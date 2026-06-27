@@ -13,7 +13,7 @@
    ============================================================ */
 
 window.PHOTOS = [
-  { src: "photos/AbbyCod032793-R1-022 3.JPG", caption: "Untitled no. 1", w: 3637, h: 2433 },
+  { src: "photos/AbbyCod032793-R1-022 3.JPG", caption: "Untitled no. 1", w: 2433, h: 3637 }, // EXIF-rotated to portrait
   { src: "photos/AbbyCod032793-R1-026 2.JPG", caption: "Untitled no. 2", w: 3637, h: 2433 },
   { src: "photos/AbbyCod_AbbyCod-R1-E030.JPG", caption: "Untitled no. 3", w: 3637, h: 2433 },
   { src: "photos/AbbyCod_AbbyCod-R2-018-7A 3.JPG", caption: "Untitled no. 4", w: 2433, h: 3637 },

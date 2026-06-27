@@ -4,9 +4,10 @@
    Each entry:
      src     : path to the image (put image files in /photos)
      caption : text shown on hover and on the order screen
-     w, h    : the image's pixel width/height. Sets the container's
-               aspect ratio so the photo shows uncropped. (Optional —
-               if omitted, the tile falls back to 3:2.)
+     w, h    : OPTIONAL. The page now measures each image's true
+               displayed size automatically (EXIF rotation included), so
+               you don't need these. They only act as an early hint to
+               avoid a brief layout shift before the image loads.
 
    To add a photo: drop the file in /photos and add a line below.
    To reorder the album: reorder the lines below.

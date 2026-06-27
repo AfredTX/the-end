@@ -31,6 +31,20 @@ const sizes = window.PRINT_SIZES || [];
 
 let lastFocused = null;
 
+/* Set an element's aspect-ratio from an image's true displayed size.
+   naturalWidth/naturalHeight already reflect EXIF orientation in modern
+   browsers, so rotated photos are handled automatically — no per-photo
+   w/h needed in photos-data.js. */
+function applyNaturalRatio(el, img) {
+  const set = () => {
+    if (img.naturalWidth && img.naturalHeight) {
+      el.style.aspectRatio = img.naturalWidth + " / " + img.naturalHeight;
+    }
+  };
+  if (img.complete) set();
+  else img.addEventListener("load", set, { once: true });
+}
+
 /* ---------------------- Build the gallery ---------------------- */
 function buildGallery() {
   if (!photos.length) {
@@ -48,6 +62,7 @@ function buildGallery() {
     img.src = photo.src;
     img.alt = photo.caption || "";
     img.loading = "lazy";
+    applyNaturalRatio(tile, img); // measured size overrides the w/h hint
 
     const caption = document.createElement("span");
     caption.className = "tile__caption";
@@ -101,6 +116,7 @@ function openModal(index) {
   modalImage.src = photo.src;
   modalImage.alt = photo.caption || "";
   modalImage.style.aspectRatio = photo.w && photo.h ? photo.w + " / " + photo.h : "";
+  applyNaturalRatio(modalImage, modalImage); // measured size overrides the w/h hint
   modalCaption.textContent = photo.caption || "";
   fieldPhoto.value = photo.caption || photo.src;
 

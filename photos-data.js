@@ -10,12 +10,10 @@
    ============================================================ */
 
 window.PHOTOS = [
-  { src: "photos/photo-1.svg", caption: "Untitled no. 1" },
-  { src: "photos/photo-2.svg", caption: "Untitled no. 2" },
-  { src: "photos/photo-3.svg", caption: "Untitled no. 3" },
-  { src: "photos/photo-4.svg", caption: "Untitled no. 4" },
-  { src: "photos/photo-5.svg", caption: "Untitled no. 5" },
-  { src: "photos/photo-6.svg", caption: "Untitled no. 6" },
+  { src: "photos/AbbyCod032793-R1-022 3.JPG", caption: "Untitled no. 1" },
+  { src: "photos/AbbyCod032793-R1-026 2.JPG", caption: "Untitled no. 2" },
+  { src: "photos/AbbyCod_AbbyCod-R1-E030.JPG", caption: "Untitled no. 3" },
+  { src: "photos/AbbyCod_AbbyCod-R2-018-7A 3.JPG", caption: "Untitled no. 4" },
 ];
 
 /* ============================================================

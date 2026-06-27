@@ -42,6 +42,7 @@ function buildGallery() {
     tile.type = "button";
     tile.className = "tile";
     tile.setAttribute("aria-label", photo.caption || "Photo");
+    if (photo.w && photo.h) tile.style.aspectRatio = photo.w + " / " + photo.h;
 
     const img = document.createElement("img");
     img.src = photo.src;
@@ -99,6 +100,7 @@ function openModal(index) {
 
   modalImage.src = photo.src;
   modalImage.alt = photo.caption || "";
+  modalImage.style.aspectRatio = photo.w && photo.h ? photo.w + " / " + photo.h : "";
   modalCaption.textContent = photo.caption || "";
   fieldPhoto.value = photo.caption || photo.src;
 

@@ -110,12 +110,15 @@ body {
   width: 100%;
   max-width: var(--max-width);
   margin: 0 auto;
+  /* keep each tile at its own photo ratio instead of stretching to the row */
+  align-items: start;
 }
 
 .tile {
   position: relative;
   display: block;
-  aspect-ratio: 1 / 1;
+  /* fallback only — app.js sets the real aspect-ratio per photo */
+  aspect-ratio: 3 / 2;
   overflow: hidden;
   background: #f3f3f3;
   border: none;
@@ -196,8 +199,9 @@ body {
 
 .modal__image {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
+  /* fallback only — app.js sets the real aspect-ratio per photo */
+  aspect-ratio: 3 / 2;
+  object-fit: contain;
   display: block;
   margin-bottom: 1rem;
   background: #f3f3f3;

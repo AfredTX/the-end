@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>THE END.</title>
+  <link rel="preconnect" href="https://api.web3forms.com" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Top-left anchor: drop your logo image in as "the-end.png".
+       Until it's there, this falls back to the "THE END." wordmark. -->
+  <a class="anchor" href="#top" id="top" aria-label="THE END.">
+    <img
+      class="anchor__img"
+      src="the-end.png"
+      alt="THE END."
+      onerror="this.outerHTML='&lt;span class=&quot;anchor__text display&quot;&gt;THE END.&lt;/span&gt;'"
+    />
+  </a>
+
+  <main class="page">
+    <div id="gallery" class="gallery"></div>
+  </main>
+
+  <!-- Order modal -->
+  <div id="modal" class="modal" hidden>
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__panel" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal__close" type="button" data-close aria-label="Close">&times;</button>
+
+      <img id="modal-image" class="modal__image" src="" alt="" />
+      <h2 id="modal-title" class="modal__caption"></h2>
+
+      <form id="order-form" class="order-form">
+        <fieldset class="order-form__sizes">
+          <legend>Select a print size</legend>
+          <div id="size-options" class="size-options"></div>
+        </fieldset>
+
+        <label class="field">
+          <span>Your name</span>
+          <input type="text" name="buyer_name" required autocomplete="name" />
+        </label>
+
+        <label class="field">
+          <span>Your email</span>
+          <input type="email" name="buyer_email" required autocomplete="email" />
+        </label>
+
+        <label class="field">
+          <span>Note (optional)</span>
+          <textarea name="note" rows="2"></textarea>
+        </label>
+
+        <input type="hidden" name="photo" id="field-photo" />
+        <input type="hidden" name="print_size" id="field-size" />
+
+        <button type="submit" class="button order-form__submit">Request this print</button>
+        <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="photos-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

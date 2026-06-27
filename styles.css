@@ -1,0 +1,299 @@
+/* ============================================================
+   the end — print ordering site
+   White background, black text. Loubag display font.
+   ============================================================ */
+
+/* --- Loubag display font -------------------------------------
+   Drop the font files into /fonts (see fonts/README.txt).
+   Until then, the page falls back to a clean serif.
+------------------------------------------------------------- */
+@font-face {
+  font-family: "Loubag";
+  src: url("fonts/Loubag-Bold.woff2") format("woff2"),
+       url("fonts/Loubag-Bold.woff") format("woff");
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Loubag";
+  src: url("fonts/Loubag-Regular.woff2") format("woff2"),
+       url("fonts/Loubag-Regular.woff") format("woff");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --bg: #ffffff;
+  --fg: #000000;
+  --muted: #6b6b6b;
+  --line: #e6e6e6;
+  --max-width: 1100px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fg);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.5;
+}
+
+.display {
+  font-family: "Loubag", Georgia, "Times New Roman", serif;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+/* ---------------------- Top-left anchor ------------------ */
+.anchor {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.75rem;
+  z-index: 20;
+  display: inline-block;
+  text-decoration: none;
+  color: var(--fg);
+}
+.anchor__img {
+  display: block;
+  height: clamp(40px, 6vw, 72px);
+  width: auto;
+}
+.anchor__text {
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  line-height: 1;
+}
+
+/* ---------------------- Page / centered gallery --------- */
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* clear the fixed anchor on small screens */
+  padding: clamp(5.5rem, 14vw, 8rem) 1rem 3rem;
+}
+
+/* ---------------------- Buttons -------------------------- */
+.button {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--fg);
+  background: transparent;
+  border: 1px solid var(--fg);
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.button:hover {
+  background: var(--fg);
+  color: var(--bg);
+}
+
+/* ---------------------- Gallery ------------------------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 4px;
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.tile {
+  position: relative;
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  background: #f3f3f3;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+.tile:hover img,
+.tile:focus-visible img {
+  transform: scale(1.04);
+}
+
+/* Caption appears on hover as an overlaid title */
+.tile__caption {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 0.9rem;
+  color: #fff;
+  background: linear-gradient(to top, rgba(0,0,0,0.55), rgba(0,0,0,0) 55%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+.tile:hover .tile__caption,
+.tile:focus-visible .tile__caption {
+  opacity: 1;
+}
+
+/* ---------------------- Modal --------------------------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.modal[hidden] { display: none; }
+
+.modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.modal__panel {
+  position: relative;
+  background: var(--bg);
+  max-width: 460px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.75rem;
+  border: 1px solid var(--line);
+}
+
+.modal__close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.75rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--fg);
+}
+
+.modal__image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 1rem;
+  background: #f3f3f3;
+}
+.modal__caption {
+  font-size: 1.25rem;
+  margin: 0 0 1.25rem;
+  font-weight: 600;
+}
+
+/* ---------------------- Order form ---------------------- */
+.order-form { display: block; }
+
+.order-form__sizes {
+  border: none;
+  padding: 0;
+  margin: 0 0 1.25rem;
+}
+.order-form__sizes legend {
+  padding: 0;
+  margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.size-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 0.5rem;
+}
+.size-option {
+  position: relative;
+}
+.size-option input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.size-option label {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  padding: 0.6rem 0.75rem;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+.size-option label:hover {
+  border-color: var(--fg);
+}
+.size-option input:checked + label {
+  border-color: var(--fg);
+  background: var(--fg);
+  color: var(--bg);
+}
+.size-option__dim { font-weight: 600; }
+.size-option__price { font-size: 0.85rem; color: inherit; opacity: 0.8; }
+
+.field {
+  display: block;
+  margin-bottom: 1rem;
+}
+.field span {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+.field input,
+.field textarea {
+  width: 100%;
+  font: inherit;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--fg);
+  resize: vertical;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--fg);
+}
+
+.order-form__submit {
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.form-status {
+  margin: 0.75rem 0 0;
+  font-size: 0.9rem;
+  min-height: 1.2em;
+}
+.form-status.is-error { color: #b00020; }
+.form-status.is-success { color: #0a7d28; }

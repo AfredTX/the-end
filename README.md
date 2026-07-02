@@ -15,6 +15,7 @@ No build step, no server.
 | `app.js` | Gallery + order form logic — **set the Web3Forms key here** |
 | `photos-data.js` | The photo list (**generated** — run `build-photos.py`) + print sizes (edit here) |
 | `build-photos.py` | Makes web-sized copies of your photos and rebuilds the list |
+| `publish-photos.ps1` | One-click: pull new photos, build them, commit + push |
 | `photos/` | Your original image files (drop them here) |
 | `the-end.png` | Top-left logo image — **add this file** (falls back to text) |
 | `fonts/` | Optional Loubag font for the text fallback |
@@ -30,26 +31,35 @@ No build step, no server.
 
 ## Adding photos
 
-1. Drop your image files (`.jpg`, `.jpeg`, `.png`) into `photos/`. Any number
-   is fine — 50+ works well.
-2. Run the builder once:
+**If photos were uploaded through the GitHub website** (the usual way), just run
+this one command on the computer that has this folder — it pulls the new photos,
+builds them, and publishes:
 
-   ```
-   py -m pip install pillow      # one time only
-   py build-photos.py
-   ```
+```
+.\publish-photos.ps1
+```
 
-This makes fast web-sized copies (small thumbnails for the grid, medium
-copies for the opened view) and regenerates `photos-data.js` for you. Your
-big originals stay in `photos/` as the archive — visitors never download
-them, so the page stays fast even with many photos. Re-running only
-processes files that changed (`--force` rebuilds everything).
+(First time only, install the image tool: `py -m pip install pillow`. If Windows
+blocks the script the first time, run `Set-ExecutionPolicy -Scope CurrentUser
+RemoteSigned` once, then retry.)
 
-Photos appear in filename order (`photo2` before `photo10`). Captions
-default to "Untitled no. 1, 2, 3…"; edit the `caption:` text in
-`photos-data.js` if you want — your edits survive the next rebuild.
+**If you're adding photos locally instead**, drop the image files (`.jpg`,
+`.jpeg`, `.png`) into `photos/`, then run the builder and push:
 
-> After adding photos, commit and push (see `SETUP.md`) to publish them.
+```
+py build-photos.py
+git add photos photos-data.js && git commit -m "Add photos" && git push
+```
+
+Either way, the builder makes fast web-sized copies (small thumbnails for the
+grid, medium copies for the opened view) and regenerates `photos-data.js`. Your
+big originals stay in `photos/` as the archive — visitors never download them, so
+the page stays fast even with 50+ photos. Re-running only processes files that
+changed (`--force` rebuilds everything).
+
+Photos appear in filename order (`photo2` before `photo10`). Captions default to
+"Untitled no. 1, 2, 3…" and renumber automatically; edit the `caption:` text in
+`photos-data.js` to give one a real title — your custom titles survive rebuilds.
 
 ## Web3Forms setup (gets orders into an inbox)
 

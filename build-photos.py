@@ -44,6 +44,7 @@ VIEW_Q = 82
 
 SOURCE_EXT = {".jpg", ".jpeg", ".png"}
 FORCE = "--force" in sys.argv[1:]
+AUTO_CAPTION = re.compile(r"^Untitled no\. \d+$")  # placeholder, safe to renumber
 
 DEFAULT_SIZES = """window.PRINT_SIZES = [
   { dim: "4 \\u00d7 6", price: "" },
@@ -128,7 +129,14 @@ def build():
             with Image.open(view) as vw:
                 w, h = vw.size
 
-        caption = captions.get(src.name, f"Untitled no. {i}")
+        # Auto "Untitled no. N" captions are placeholders: always renumber to
+        # the current gallery position (avoids duplicates when photos are
+        # inserted). Only a caption Abby actually customized is kept as-is.
+        prev = captions.get(src.name)
+        if prev and not AUTO_CAPTION.match(prev):
+            caption = prev
+        else:
+            caption = f"Untitled no. {i}"
         entries.append({
             "thumb": f"photos/thumbs/{stem}.jpg",
             "view": f"photos/view/{stem}.jpg",

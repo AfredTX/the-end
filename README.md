@@ -13,8 +13,9 @@ No build step, no server.
 | `index.html` | The whole page (anchor + photo grid + order modal) |
 | `styles.css` | All styling (white bg, black text) |
 | `app.js` | Gallery + order form logic — **set the Web3Forms key here** |
-| `photos-data.js` | The list of photos and the print sizes — **edit here** |
-| `photos/` | Image files (placeholders for now) |
+| `photos-data.js` | The photo list (**generated** — run `build-photos.py`) + print sizes (edit here) |
+| `build-photos.py` | Makes web-sized copies of your photos and rebuilds the list |
+| `photos/` | Your original image files (drop them here) |
 | `the-end.png` | Top-left logo image — **add this file** (falls back to text) |
 | `fonts/` | Optional Loubag font for the text fallback |
 | `make-qr.py` | Generates the QR code once the site is live |
@@ -29,17 +30,26 @@ No build step, no server.
 
 ## Adding photos
 
-Drop image files into `photos/`, then list them in `photos-data.js`:
+1. Drop your image files (`.jpg`, `.jpeg`, `.png`) into `photos/`. Any number
+   is fine — 50+ works well.
+2. Run the builder once:
 
-```js
-window.PHOTOS = [
-  { src: "photos/sunset.jpg", caption: "Golden hour, 2024" },
-  ...
-];
-```
+   ```
+   py -m pip install pillow      # one time only
+   py build-photos.py
+   ```
 
-The caption shows on hover and on the order screen. Reorder the lines to
-reorder the album.
+This makes fast web-sized copies (small thumbnails for the grid, medium
+copies for the opened view) and regenerates `photos-data.js` for you. Your
+big originals stay in `photos/` as the archive — visitors never download
+them, so the page stays fast even with many photos. Re-running only
+processes files that changed (`--force` rebuilds everything).
+
+Photos appear in filename order (`photo2` before `photo10`). Captions
+default to "Untitled no. 1, 2, 3…"; edit the `caption:` text in
+`photos-data.js` if you want — your edits survive the next rebuild.
+
+> After adding photos, commit and push (see `SETUP.md`) to publish them.
 
 ## Web3Forms setup (gets orders into an inbox)
 

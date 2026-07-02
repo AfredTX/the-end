@@ -59,7 +59,7 @@ function buildGallery() {
     if (photo.w && photo.h) tile.style.aspectRatio = photo.w + " / " + photo.h;
 
     const img = document.createElement("img");
-    img.src = photo.src;
+    img.src = photo.thumb || photo.src; // small grid copy; falls back to full
     img.alt = photo.caption || "";
     img.loading = "lazy";
     applyNaturalRatio(tile, img); // measured size overrides the w/h hint
@@ -113,7 +113,7 @@ function openModal(index) {
   const photo = photos[index];
   lastFocused = document.activeElement;
 
-  modalImage.src = photo.src;
+  modalImage.src = photo.view || photo.src; // medium copy; falls back to full
   modalImage.alt = photo.caption || "";
   modalImage.style.aspectRatio = photo.w && photo.h ? photo.w + " / " + photo.h : "";
   applyNaturalRatio(modalImage, modalImage); // measured size overrides the w/h hint

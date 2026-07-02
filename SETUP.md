@@ -1,6 +1,7 @@
 # Setup guide
 
-Three parts: (1) Web3Forms, (2) GitHub Pages, (3) QR code.
+Four parts: (1) Web3Forms, (2) GitHub Pages, (3) QR code,
+(4) editing photo captions.
 
 ---
 
@@ -75,11 +76,14 @@ push everything to it. `index.html` stays at the top level automatically.
 > existing one with `git remote add origin URL && git push -u origin main`.
 
 ### C. Turn on Pages
-Enable Pages to serve from the `main` branch root, then read back the URL:
+Enable Pages to serve from the `main` branch root, then read back the URL.
+In **PowerShell** (write the request body to a file so the brackets/quotes
+survive), run:
 
-```
-gh api -X POST repos/{owner}/the-end/pages -f "source[branch]=main" -f "source[path]=/"
-gh api repos/{owner}/the-end/pages --jq .html_url
+```powershell
+'{"source":{"branch":"main","path":"/"}}' | Set-Content -Encoding ascii "$env:TEMP\pages.json"
+gh api -X POST "repos/{owner}/the-end/pages" --input "$env:TEMP\pages.json"
+gh api "repos/{owner}/the-end/pages" --jq .html_url
 ```
 
 (`{owner}` is filled in automatically by `gh`.) Wait ~1 minute, then open the
@@ -111,3 +115,44 @@ site. (Test the QR with your phone camera before printing a batch.)
 
 > Prefer no command line? Paste the URL into any QR generator
 > (e.g. qr-code-generator.com) and download the PNG.
+
+---
+
+## 4. Editing photo captions (right on GitHub — no computer setup)
+
+The **caption** is the little title shown under a photo and on the order
+screen. New photos start as "Untitled no. 1, 2, 3…"; here's how to give one a
+real name. You do this entirely in the web browser.
+
+1. Go to the repo: **https://github.com/AfredTX/the-end**
+2. Click the file **`photos-data.js`** in the file list.
+3. Click the **pencil icon** (✏️ "Edit this file") near the top-right of the
+   file.
+4. Each photo is **one line** that starts with `{ thumb:` . The lines are in the
+   same top-to-bottom order as the gallery. To be sure you have the right one,
+   look at the `orig:` part of the line — it shows the photo's filename, e.g.
+   `orig: "photos/000041550010.jpg"`.
+5. Change **only the words inside the quotes after `caption:`**. For example,
+   turn this:
+
+   ```js
+   { thumb: "…", view: "…", orig: "photos/000041550010.jpg", caption: "Untitled no. 1", w: 1600, h: 1061 },
+   ```
+
+   into this:
+
+   ```js
+   { thumb: "…", view: "…", orig: "photos/000041550010.jpg", caption: "Low tide, Wellfleet", w: 1600, h: 1061 },
+   ```
+
+   Keep the quotes `"` and the comma. Don't change `thumb`, `view`, `orig`,
+   `w`, or `h`.
+6. **Don't type a double-quote `"` inside the caption** — it breaks the line.
+   Apostrophes (`'`) are fine (e.g. `Abby's porch`).
+7. Scroll to the bottom, click the green **"Commit changes…"** button, leave
+   **"Commit directly to the `main` branch"** selected, and confirm.
+8. Wait ~1 minute, then refresh the site — the new caption is live.
+
+> Your custom captions stick around. When new photos are added later, only the
+> leftover "Untitled no. N" placeholders get renumbered — any caption you
+> actually typed is kept.

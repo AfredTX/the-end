@@ -9,12 +9,20 @@
    ============================================================ */
 
 window.PHOTOS = [
-  { thumb: "photos/thumbs/000000040015260407.jpg", view: "photos/view/000000040015260407.jpg", orig: "photos/000000040015260407.jpg", caption: "Untitled no. 1", w: 1600, h: 1061 },
-  { thumb: "photos/thumbs/AbbCod8_AbbCod8-R3-030-13A.jpg", view: "photos/view/AbbCod8_AbbCod8-R3-030-13A.jpg", orig: "photos/AbbCod8_AbbCod8-R3-030-13A.jpg", caption: "Untitled no. 2", w: 1070, h: 1600 },
-  { thumb: "photos/thumbs/AbbyCod032793-R1-022 3.jpg", view: "photos/view/AbbyCod032793-R1-022 3.jpg", orig: "photos/AbbyCod032793-R1-022 3.JPG", caption: "Untitled no. 3", w: 1070, h: 1600 },
-  { thumb: "photos/thumbs/AbbyCod032793-R1-026 2.jpg", view: "photos/view/AbbyCod032793-R1-026 2.jpg", orig: "photos/AbbyCod032793-R1-026 2.JPG", caption: "Untitled no. 4", w: 1600, h: 1070 },
-  { thumb: "photos/thumbs/AbbyCod_AbbyCod-R1-E030.jpg", view: "photos/view/AbbyCod_AbbyCod-R1-E030.jpg", orig: "photos/AbbyCod_AbbyCod-R1-E030.JPG", caption: "Untitled no. 5", w: 1600, h: 1070 },
-  { thumb: "photos/thumbs/AbbyCod_AbbyCod-R2-018-7A 3.jpg", view: "photos/view/AbbyCod_AbbyCod-R2-018-7A 3.jpg", orig: "photos/AbbyCod_AbbyCod-R2-018-7A 3.JPG", caption: "Untitled no. 6", w: 1070, h: 1600 },
+  { thumb: "photos/thumbs/000041550010.jpg", view: "photos/view/000041550010.jpg", orig: "photos/000041550010.jpg", caption: "Untitled no. 1", w: 1061, h: 1600 },
+  { thumb: "photos/thumbs/000041550026.jpg", view: "photos/view/000041550026.jpg", orig: "photos/000041550026.jpg", caption: "Untitled no. 2", w: 1061, h: 1600 },
+  { thumb: "photos/thumbs/000000040015260407.jpg", view: "photos/view/000000040015260407.jpg", orig: "photos/000000040015260407.jpg", caption: "Untitled no. 3", w: 1600, h: 1061 },
+  { thumb: "photos/thumbs/AbbCod8_AbbCod8-R3-030-13A.jpg", view: "photos/view/AbbCod8_AbbCod8-R3-030-13A.jpg", orig: "photos/AbbCod8_AbbCod8-R3-030-13A.jpg", caption: "Untitled no. 4", w: 1070, h: 1600 },
+  { thumb: "photos/thumbs/AbbCod8_AbbCod8-R5-073-35.jpg", view: "photos/view/AbbCod8_AbbCod8-R5-073-35.jpg", orig: "photos/AbbCod8_AbbCod8-R5-073-35.JPG", caption: "Untitled no. 5", w: 1070, h: 1600 },
+  { thumb: "photos/thumbs/AbbyCod032793-R1-022 3.jpg", view: "photos/view/AbbyCod032793-R1-022 3.jpg", orig: "photos/AbbyCod032793-R1-022 3.JPG", caption: "Untitled no. 6", w: 1070, h: 1600 },
+  { thumb: "photos/thumbs/AbbyCod032793-R1-026 2.jpg", view: "photos/view/AbbyCod032793-R1-026 2.jpg", orig: "photos/AbbyCod032793-R1-026 2.JPG", caption: "Untitled no. 7", w: 1600, h: 1070 },
+  { thumb: "photos/thumbs/AbbyCod032989-R1-034.jpg", view: "photos/view/AbbyCod032989-R1-034.jpg", orig: "photos/AbbyCod032989-R1-034.JPG", caption: "Untitled no. 8", w: 1070, h: 1600 },
+  { thumb: "photos/thumbs/AbbyCod_AbbyCod-R1-E025.jpg", view: "photos/view/AbbyCod_AbbyCod-R1-E025.jpg", orig: "photos/AbbyCod_AbbyCod-R1-E025.JPG", caption: "Untitled no. 9", w: 1070, h: 1600 },
+  { thumb: "photos/thumbs/AbbyCod_AbbyCod-R1-E030.jpg", view: "photos/view/AbbyCod_AbbyCod-R1-E030.jpg", orig: "photos/AbbyCod_AbbyCod-R1-E030.JPG", caption: "Untitled no. 10", w: 1600, h: 1070 },
+  { thumb: "photos/thumbs/AbbyCod_AbbyCod-R2-018-7A 3.jpg", view: "photos/view/AbbyCod_AbbyCod-R2-018-7A 3.jpg", orig: "photos/AbbyCod_AbbyCod-R2-018-7A 3.JPG", caption: "Untitled no. 11", w: 1070, h: 1600 },
+  { thumb: "photos/thumbs/AbbyCodr031232-R1-008.jpg", view: "photos/view/AbbyCodr031232-R1-008.jpg", orig: "photos/AbbyCodr031232-R1-008.JPG", caption: "Untitled no. 12", w: 1600, h: 1070 },
+  { thumb: "photos/thumbs/AbbyCodr365147-R1-007 copy.jpg", view: "photos/view/AbbyCodr365147-R1-007 copy.jpg", orig: "photos/AbbyCodr365147-R1-007 copy.jpg", caption: "Untitled no. 13", w: 1035, h: 1600 },
+  { thumb: "photos/thumbs/AbbyCodr365147-R1-026.jpg", view: "photos/view/AbbyCodr365147-R1-026.jpg", orig: "photos/AbbyCodr365147-R1-026.JPG", caption: "Untitled no. 14", w: 1070, h: 1600 },
 ];
 
 /* ============================================================
